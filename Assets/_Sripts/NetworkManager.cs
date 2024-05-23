@@ -16,6 +16,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Joinned Server Succesfully");
+        UIManager.Instance.connectingPanel.SetActive(false);
+        UIManager.Instance.createjoinPanel.SetActive(true);
+    }
+
     public void JoinLobby()
     {
         PhotonNetwork.JoinRoom(joinInputField.text);
