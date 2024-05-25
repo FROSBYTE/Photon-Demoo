@@ -13,6 +13,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject createjoinPanel;
     [SerializeField] GameObject waitingRoomPanel;
 
+    [SerializeField] GameObject startButton;
+
     [SerializeField] TMP_InputField createInputField;
     [SerializeField] TMP_InputField joinInputField;
     [SerializeField] TMP_InputField playerNameInputField;
@@ -31,6 +33,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnConnectedToMaster()
@@ -72,6 +75,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             GameObject playerNameObj = Instantiate(playerNamePrefab, playerListParent);
             playerNameObj.GetComponent<TextMeshProUGUI>().text = player.NickName;
             playerNameObjects.Add(playerNameObj);
+        }
+
+        // Enable/disable the start button based on the number of players
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("I am the master client, enabling start button");
+            startButton.SetActive(true);
+        }
+        else
+        {
+            startButton.SetActive(false);
         }
     }
 

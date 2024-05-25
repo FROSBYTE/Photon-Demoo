@@ -2232,6 +2232,7 @@ MonoBehaviour:
   connectingPanel: {fileID: 1856749882}
   createjoinPanel: {fileID: 1104861658}
   waitingRoomPanel: {fileID: 1864298497}
+  startButton: {fileID: 1898456200}
   createInputField: {fileID: 2010999771}
   joinInputField: {fileID: 921313146}
   playerNameInputField: {fileID: 799306340}
